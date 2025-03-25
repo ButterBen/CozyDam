@@ -16,7 +16,7 @@ Cozy Dam is 2D isometric RTS where you and your beaver colony strive to survive 
 <p align="center">
   <img src="https://i.imgur.com/7f0bIZC.jpeg" alt="Menu Screen">
 </p>
----
+
 ## Gameplay & Features
 The game features the idea of a classic RTS. You can select your units and give them different things to do:
 - Chopping down trees
