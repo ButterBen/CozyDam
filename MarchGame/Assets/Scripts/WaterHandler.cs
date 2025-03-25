@@ -86,10 +86,10 @@ public class WaterHandler : MonoBehaviour
         }
 
         // Place extra inner corner tiles
-        waterTilemap.SetTile(new Vector3Int(minX, minY, 0), waterTile); // Bottom-left
-        waterTilemap.SetTile(new Vector3Int(minX , maxY, 0), waterTile); // Top-left
-        waterTilemap.SetTile(new Vector3Int(maxX , minY , 0), waterTile); // Bottom-right
-        waterTilemap.SetTile(new Vector3Int(maxX , maxY , 0), waterTile); // Top-right
+        waterTilemap.SetTile(new Vector3Int(minX, minY, 0), waterTile); 
+        waterTilemap.SetTile(new Vector3Int(minX , maxY, 0), waterTile);
+        waterTilemap.SetTile(new Vector3Int(maxX , minY , 0), waterTile);
+        waterTilemap.SetTile(new Vector3Int(maxX , maxY , 0), waterTile); 
     }
     
     public void StartFlood()
@@ -99,11 +99,9 @@ public class WaterHandler : MonoBehaviour
             
         floodStarted = true;
         
-        // Start with a random border tile
         Vector3Int initialTile = GetRandomBorderTile();
         StartCoroutine(PlaceWaterTileAsync(initialTile));
         
-        // Create the first water audio source
         CreateWaterAudioSource(initialTile, true);
         if(lastWaterAudioSource != null)
         {
@@ -117,21 +115,18 @@ public class WaterHandler : MonoBehaviour
     {
         List<Vector3Int> borderPositions = new List<Vector3Int>();
         
-        // Top and bottom borders
         for (int x = minX; x <= maxX; x++)
         {
             borderPositions.Add(new Vector3Int(x, minY, 0));
             borderPositions.Add(new Vector3Int(x, maxY, 0));
         }
         
-        // Left and right borders (excluding corners which are already added)
         for (int y = minY + 1; y < maxY; y++)
         {
             borderPositions.Add(new Vector3Int(minX, y, 0));
             borderPositions.Add(new Vector3Int(maxX, y, 0));
         }
         
-        // Return a random position from the border
         return borderPositions[Random.Range(0, borderPositions.Count)];
     }
     
@@ -139,7 +134,6 @@ public class WaterHandler : MonoBehaviour
     {
         CheckForResources(position);
 
-        // Remove existing tiles
         foreach (Tilemap tilemap in environmentTilemaps)
         {
             if (tilemap.HasTile(position))
@@ -148,7 +142,6 @@ public class WaterHandler : MonoBehaviour
             }
         }
 
-        // Place water tile
         waterTilemap.SetTile(position, waterTile);
         int random = Random.Range(0, 2);
         if(random == 1)
@@ -165,17 +158,14 @@ public class WaterHandler : MonoBehaviour
             worldPos.y += 0.5f;
 
             GameObject obstacle = Instantiate(navMeshObstaclePrefab, worldPos, Quaternion.identity);
-            obstacle.transform.parent = transform; // Parent to WaterHandler for organization
+            obstacle.transform.parent = transform; 
 
-            // Store reference to the obstacle
             waterObstacles[position] = obstacle;
 
-            // Yield to spread workload across frames
             yield return null;
         }
     }
 
-    // Call this method instead of PlaceWaterTile
     public void StartPlaceWaterTile(Vector3Int position)
     {
         StartCoroutine(PlaceWaterTileAsync(position));
@@ -246,7 +236,6 @@ public class WaterHandler : MonoBehaviour
             
             List<Vector3Int> currentWaterTiles = new List<Vector3Int>(waterTiles);
             
-            // Find all possible expansion positions
             List<Vector3Int> expansionPositions = new List<Vector3Int>();
             
             foreach (Vector3Int waterPos in currentWaterTiles)
@@ -261,13 +250,9 @@ public class WaterHandler : MonoBehaviour
             StartCoroutine(PlaceWaterTileAsync(nextFloodPos));
             lastWaterAudioSourcePosition = nextFloodPos;
             
-            // Update the last water audio source position
-            
-            //Debug.Log($"Flooding to position: {nextFloodPos}, Water tile count: {waterTiles.Count}");
             marchGameVariables.waterTilesCount = waterTiles.Count;
         }
         
-        // Once flooding is complete, destroy the first audio source
         if (firstWaterAudioSource != null)
         {
             // Fade out the first audio source
@@ -284,19 +269,18 @@ public class WaterHandler : MonoBehaviour
         // Create a new GameObject for the audio source
         GameObject audioSourceObj = new GameObject(isFirstTile ? "FirstWaterAudioSource" : "LastWaterAudioSource");
         audioSourceObj.transform.position = worldPosition;
-        audioSourceObj.transform.parent = transform; // Parent to the WaterHandler
+        audioSourceObj.transform.parent = transform; 
         
         // Add AudioSource component
         AudioSource audioSource = audioSourceObj.AddComponent<AudioSource>();
         audioSource.clip = waterSound;
         audioSource.loop = true;
-        audioSource.spatialBlend = 1.0f; // Full 3D sound
+        audioSource.spatialBlend = 1.0f; 
         audioSource.minDistance = .7f;
         audioSource.maxDistance = 9.0f;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
         audioSource.Play();
         
-        // Store reference to the audio source
         if (isFirstTile)
         {
             firstWaterAudioSource = audioSourceObj;
@@ -329,7 +313,6 @@ public class WaterHandler : MonoBehaviour
         StopAllCoroutines();
         floodStarted = false;
         CreateWaterAudioSource(lastWaterAudioSourcePosition, false);
-        // Destroy audio sources if they exist
         if (firstWaterAudioSource != null)
         {
             Destroy(firstWaterAudioSource);

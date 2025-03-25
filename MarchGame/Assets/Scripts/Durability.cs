@@ -269,34 +269,4 @@ public class Durability : MonoBehaviour
         unitStatus_.workSlot = null;
         unitStatus_.currentWorkAssign = null;
     }
-    /*public IEnumerator WoodCutting(GameObject unit, GameObject workslot)
-    {
-        GameObject targetTree = workslot;
-        Durability durability = targetTree.GetComponent<Durability>();
-        float duration = 50000f;
-        float damagePerSecond = 1f;
-        
-        for (float t = 0; t < duration; t += 1f)
-        {
-            int _currentDurability = durability.GetCurrentDurability();
-           // Debug.Log("Current durabilityyyyy: " + _currentDurability + "activeWalkToPoints: " + activeWalkToPoints.Count + "duration: " + t);
-            if( _currentDurability <= 0 && activeWalkToPoints.Count > 0)
-            {
-                unit.GetComponent<UnitStatus>().SetState(UnitStatus.CurrentState.Idle);
-                StartCoroutine(AssignRandomWorkSlot(unit, UnitStatus.CurrentState.WoodCutting));
-                durability.StartCoroutine(durability.WaitForDestruction());
-                yield break;
-            }
-            else if(_currentDurability <= 0 && activeWalkToPoints.Count <= 0)
-            {
-                unit.GetComponent<UnitStatus>().SetState(UnitStatus.CurrentState.Idle);
-                durability.StartCoroutine(durability.WaitForDestruction());
-                yield break;
-            }
-            durability.TakeDamage((int)damagePerSecond, Durability.ResourceType.Wood);
-            unit.GetComponentInChildren<Transform>().rotation = Quaternion.Euler(0, 0, 0);
-
-            yield return new WaitForSeconds(1f);
-        }
-    }*/
 }

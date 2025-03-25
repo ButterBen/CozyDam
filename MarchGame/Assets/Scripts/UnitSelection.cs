@@ -58,7 +58,6 @@ public class UnitSelection : MonoBehaviour
         Mathf.Infinity,
         LayerMask.GetMask("UI")
         );
-        //switch case for different cursor textures
         if(selectedUnits.Count > 0)
         {
             switch (hit.collider)
@@ -133,7 +132,6 @@ public class UnitSelection : MonoBehaviour
                     else
                     {
                         _unitStatus.SetWorkAssign(workAssign);
-                       // StartCoroutine(workAssign.AssignRandomWorkSlot(unit, UnitStatus.CurrentState.WoodCutting));
                         if(selectionCount == 0)
                         {
                             StartCoroutine(workAssign.AssignSetWorkslot(unit, UnitStatus.CurrentState.WoodCutting, hit.collider.gameObject));
@@ -143,8 +141,6 @@ public class UnitSelection : MonoBehaviour
                         {
                             StartCoroutine(workAssign.AssignRandomWorkSlot(unit, UnitStatus.CurrentState.WoodCutting));
                         }
-                       // StartCoroutine(workAssign.AssignSetWorkslot(unit, UnitStatus.CurrentState.WoodCutting, hit.collider.gameObject));
-                       //StartCoroutine(durability.AssignRandomWorkSlot(unit, UnitStatus.CurrentState.WoodCutting));
                     }
                     unit.GetComponent<UnitStatus>().SetSelected(false);
                 }
@@ -260,18 +256,6 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-   /* void OnDrawGizmos()
-    {
-        if (isSelecting)
-        {
-
-            Vector2 center = (startMousePos + currentMousePos) / 2f;
-            Vector2 size = new Vector2(Mathf.Abs(currentMousePos.x - startMousePos.x), Mathf.Abs(currentMousePos.y - startMousePos.y));
-
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(center, size);
-        }
-    }*/
     void UpdateSelectionBox()
     {
         Vector2 boxStart = _startMousePos;
@@ -281,15 +265,13 @@ public class UnitSelection : MonoBehaviour
         Vector2 max = Vector2.Max(boxStart, boxEnd);
         Vector2 size = max - min;
         
-        // Convert screen position to local canvas position
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             selectionBox.parent as RectTransform,
             min + size/2f,
-            null, // Use null for Screen Space - Overlay canvas
+            null, 
             out Vector2 localPos
         );
         
-        // Set local position and size
         selectionBox.localPosition = localPos;
         selectionBox.sizeDelta = size;
     }

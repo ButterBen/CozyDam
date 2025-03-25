@@ -64,7 +64,6 @@ public class TilemapPlacer : MonoBehaviour
         maxX = marchGameVariables.maxX;
         minY = marchGameVariables.minY;
         maxY = marchGameVariables.maxY;
-        //Debug.Log("Ground tiles: " + CountGroundTiles());
 
     }
     private int CountGroundTiles()
@@ -93,7 +92,6 @@ public class TilemapPlacer : MonoBehaviour
             Vector3 snappedWorldPosition = groundTilemap.CellToWorld(cellPosition);
 
             previewObject.transform.position = snappedWorldPosition;
-            //switch case for tileType
             switch (tileType)
             {
                 case TileType.Road:
@@ -122,7 +120,7 @@ public class TilemapPlacer : MonoBehaviour
     }
     void HandleUnitPlacement(Vector3Int cellPosition)
     {
-        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition) && marchGameVariables.currentUnits < marchGameVariables.possibleUnits && marchGameVariables.food >= 20) // Left mouse button
+        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition) && marchGameVariables.currentUnits < marchGameVariables.possibleUnits && marchGameVariables.food >= 20) 
         {
             if (isWithinBounds(cellPosition))
             {
@@ -132,7 +130,7 @@ public class TilemapPlacer : MonoBehaviour
                 Instantiate(Unit, snappedWorldPosition, Quaternion.identity);
             }
         }
-        else if (Input.GetMouseButtonDown(1)) // Right mouse button
+        else if (Input.GetMouseButtonDown(1)) 
         {
             if (previewObject != null)
             {
@@ -144,7 +142,7 @@ public class TilemapPlacer : MonoBehaviour
 
     void HandleTreePlacement(Vector3Int cellPosition)
     {
-        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) // Left mouse button
+        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) 
         {
             if (isWithinBounds(cellPosition))
             {
@@ -159,7 +157,7 @@ public class TilemapPlacer : MonoBehaviour
                 audioSource.PlayOneShot(treePlacementSound);
             }
         }
-        else if (Input.GetMouseButtonDown(1)) // Right mouse button
+        else if (Input.GetMouseButtonDown(1)) 
         {
             if (previewObject != null)
             {
@@ -172,16 +170,15 @@ public class TilemapPlacer : MonoBehaviour
 
     void HandleGroundPlacement(Vector3Int cellPosition)
     {
-        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) // Left mouse button
+        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) 
         {
             if (isWithinBounds(cellPosition))
             {
-                // Place the ground
-                roadTilemap.SetTile(cellPosition, null); // Clear the road tile
+                roadTilemap.SetTile(cellPosition, null); 
                 groundTilemap.SetTile(cellPosition, groundTile);
             }
         }
-        else if (Input.GetMouseButtonDown(1)) // Right mouse button
+        else if (Input.GetMouseButtonDown(1)) 
         {
             if (previewObject != null)
             {
@@ -192,7 +189,7 @@ public class TilemapPlacer : MonoBehaviour
     }
     void HandleFarmPlacement(Vector3Int position)
     {
-        if (Input.GetMouseButtonDown(0) && isWithinBounds(position) && !isCollidingWithOtherBuilding(position) && marchGameVariables.wood >= 20) // Left mouse button
+        if (Input.GetMouseButtonDown(0) && isWithinBounds(position) && !isCollidingWithOtherBuilding(position) && marchGameVariables.wood >= 20) 
         {
             if (isWithinBounds(position))
             {
@@ -219,7 +216,7 @@ public class TilemapPlacer : MonoBehaviour
                 audioSource.PlayOneShot(farmPlacementSound);
             }
         }
-        else if (Input.GetMouseButtonDown(1)) // Right mouse button
+        else if (Input.GetMouseButtonDown(1)) 
         {
             if (previewObject != null)
             {
@@ -235,9 +232,8 @@ public class TilemapPlacer : MonoBehaviour
         if (true)
         {
             Debug.Log("Placingggg dam at " + snappedWorldPosition);
-            // Place the dam
-            groundTilemap.SetTile(snappedWorldPosition, null); //
-            //  Clear the ground tile
+            groundTilemap.SetTile(snappedWorldPosition, null); 
+
             damTilemap.SetTile(snappedWorldPosition, groundTile); 
             navMeshSurface.BuildNavMesh();
         }
@@ -260,7 +256,7 @@ public class TilemapPlacer : MonoBehaviour
                 audioSource.PlayOneShot(damHousePlacementSound);
             }
         }
-        else if (Input.GetMouseButtonDown(1)) // Right mouse button
+        else if (Input.GetMouseButtonDown(1)) 
         {
             if (previewObject != null)
             {
@@ -272,7 +268,7 @@ public class TilemapPlacer : MonoBehaviour
     
     void HandleTileType(Vector3Int cellPosition, TileType tileType, Tilemap tilemap)
     {
-        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) // Left mouse button
+        if (Input.GetMouseButtonDown(0) && isWithinBounds(cellPosition)) 
         {
             if(tileType == TileType.Road && marchGameVariables.wood >= 5)
             {
@@ -292,7 +288,6 @@ public class TilemapPlacer : MonoBehaviour
                     isWithinBounds(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0))
                     && !isCollidingWithOtherBuilding(cellPosition) && !isCollidingWithOtherBuilding(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0)) && !isCollidingWithOtherBuilding(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0)) && !isCollidingWithOtherBuilding(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0)))
                 {
-                    // Clear any existing tiles in the building area
                     for (int xOffset = 0; xOffset <= 1; xOffset++)
                     {
                         for (int yOffset = 0; yOffset <= 1; yOffset++)
@@ -306,14 +301,13 @@ public class TilemapPlacer : MonoBehaviour
                     }
                     marchGameVariables.wood -= 20;
                     marchGameVariables.food -= 10;
-                    // Place the 4 building tiles in a 2x2 formation
                     audioSource.PlayOneShot(damHousePlacementSound);
                     PlaceBuilding(cellPosition);
                 }
             }
         }
 
-        if (Input.GetMouseButtonDown(1) ) // Right mouse button
+        if (Input.GetMouseButtonDown(1) )
         {
             if(previewObject!=null)
             {
@@ -356,14 +350,14 @@ public class TilemapPlacer : MonoBehaviour
         Vector3 snappedWorldPosition = groundTilemap.CellToWorld(cellPosition);
         Instantiate(buildingObject, snappedWorldPosition, Quaternion.identity);
         // Place the 4 building tiles in a 2x2 grid formation
-        groundTilemap.SetTile(cellPosition, null); // Clear the ground tile
-        groundTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), null); // Clear the ground tile
-        groundTilemap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), null); // Clear the ground tile
-        groundTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0), null); // Clear the ground tile
+        groundTilemap.SetTile(cellPosition, null);
+        groundTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), null);
+        groundTilemap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), null);
+        groundTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0), null); 
 
-        buildingTilemap.SetTile(cellPosition, buildingTile1); // Bottom-left
-        buildingTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), buildingTile2); // Bottom-right
-        buildingTilemap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), buildingTile3); // Top-left
-        buildingTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0), buildingTile4); // Top-right
+        buildingTilemap.SetTile(cellPosition, buildingTile1); 
+        buildingTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), buildingTile2); 
+        buildingTilemap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), buildingTile3); 
+        buildingTilemap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0), buildingTile4); 
     }
 }

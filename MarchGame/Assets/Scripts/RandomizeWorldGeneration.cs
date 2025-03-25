@@ -100,7 +100,6 @@ public class RandomizeWorldGeneration : MonoBehaviour
         // Draw a random value between 0 and total weight
         float randomValue = Random.Range(0, totalDecoWeight);
         
-        // Find the decoration that corresponds to this random value
         foreach (DecorationOption option in decorationOptions)
         {
             if (randomValue <= option.cumulativeWeight)
@@ -115,7 +114,6 @@ public class RandomizeWorldGeneration : MonoBehaviour
 
     void RandomizeWorld()
     {
-        // Clear existing decorations
         DecoTilemap.ClearAllTiles();
         
         // Generate new decorations
@@ -123,10 +121,8 @@ public class RandomizeWorldGeneration : MonoBehaviour
         {
             for (int y = borderMinY; y < borderMaxY; y++)
             {
-                // First check if this tile should have a decoration
                 if (Random.value < DecorationChance)
                 {
-                    // Then select which decoration to place
                     if(borderTilemap.HasTile(new Vector3Int(x, y, 0)))
                     {
                         continue;
@@ -154,23 +150,19 @@ public class RandomizeWorldGeneration : MonoBehaviour
         workAssignScriptTree.activeWalkToPoints.Clear();
         workAssignScriptTree.WalkToPoints.Clear();
         
-        // Generate new trees
         for (int i = 0; i < TreeAmount; i++)
         {
-            // Get a random tile position within tilemap bounds
             Vector3Int treeCellPosition = new Vector3Int(
                 Random.Range(borderMinX+2, borderMaxX-2),
                 Random.Range(borderMinY+2, borderMaxY-2),
                 0
             );
 
-            // Convert the tile position to a world position
             Vector3 treeWorldPosition = GroundTilemap.CellToWorld(treeCellPosition);
 
-            // Instantiate tree at world position
             GameObject tempTree = Instantiate(
                 TreePrefabs[Random.Range(0, TreePrefabs.Count)],
-                treeWorldPosition + new Vector3(0.5f, 0.5f, 0), // Offset to center the tree
+                treeWorldPosition + new Vector3(0.5f, 0.5f, 0), 
                 Quaternion.identity
             );
 
@@ -180,11 +172,5 @@ public class RandomizeWorldGeneration : MonoBehaviour
         
         workAssignScriptTree.activeWalkToPoints.AddRange(instantiatedTrees);
         workAssignScriptTree.WalkToPoints.AddRange(instantiatedTrees);
-    }
-    
-    // Public method to regenerate the world (can be called from UI or other scripts)
-    public void RegenerateWorld()
-    {
-        RandomizeWorld();
     }
 }

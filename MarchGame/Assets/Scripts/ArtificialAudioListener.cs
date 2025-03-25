@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ArtificialAudioListener : MonoBehaviour
 {
-    public Camera targetCamera; // Reference to the main camera
+    public Camera targetCamera; 
 
     void Update()
     {
         if (targetCamera == null)
         {
-            targetCamera = Camera.main; // Auto-assign if not set
+            targetCamera = Camera.main; 
         }
 
         if (targetCamera != null)

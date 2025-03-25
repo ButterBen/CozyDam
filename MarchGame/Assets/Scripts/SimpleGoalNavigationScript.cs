@@ -15,9 +15,9 @@ public class SimpleGoalNavigationScript : MonoBehaviour
     
     // Variables for stuck detection
     private float stuckCheckTimer = 0f;
-    private float stuckCheckInterval = 0.6f; // Check every 0.2 seconds
+    private float stuckCheckInterval = 0.6f; 
     private float minMovementThreshold = 0.05f; // Minimum movement required
-    private float unstuckRadius = 2f; // Radius for random point when stuck
+    private float unstuckRadius = 2f; 
     private Vector3 positionAtLastCheck;
     public float normalSpeed = 5f;
     public float slowSpeed = 3f;
@@ -42,7 +42,6 @@ public class SimpleGoalNavigationScript : MonoBehaviour
         // Check if the agent has reached its destination
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Either no path or very close to the destination
             if (!agent.pathPending)
             {
                 animator.SetBool("walking", false);
@@ -60,13 +59,13 @@ public class SimpleGoalNavigationScript : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(transform.position, out hit, 1f, NavMesh.AllAreas))
         {
-            int areaMask = hit.mask; // Gets the area type
+            int areaMask = hit.mask; 
             
-            if (areaMask == (1 << 0)) // NavMesh area 0
+            if (areaMask == (1 << 0)) 
             {
                 agent.speed = normalSpeed;
             }
-            else if (areaMask == (1 << 4)) // NavMesh area 4
+            else if (areaMask == (1 << 4)) 
             {
                 agent.speed = slowSpeed;
             }
@@ -75,7 +74,6 @@ public class SimpleGoalNavigationScript : MonoBehaviour
 
     void CheckIfStuck()
     {
-        // Only check for stuck units if we're actively navigating
         if (!agent.pathPending && agent.remainingDistance > agent.stoppingDistance)
         {
             stuckCheckTimer += Time.fixedDeltaTime;
@@ -102,7 +100,6 @@ public class SimpleGoalNavigationScript : MonoBehaviour
     
     void FindAlternatePath()
     {
-        // Find a random point within unstuckRadius
         Vector2 randomCirclePoint = Random.insideUnitCircle * unstuckRadius;
         Vector3 randomPoint = new Vector3(
             transform.position.x + randomCirclePoint.x,
@@ -117,14 +114,11 @@ public class SimpleGoalNavigationScript : MonoBehaviour
 
     void CheckMovementDirection()
     {
-        // Get current position
         Vector3 currentPosition = transform.position;
 
-        // Calculate movement direction
         Vector3 movementDirection = currentPosition - lastPosition;
 
-        // For isometric 2D, we'll check both X and Y movement
-        if (movementDirection.magnitude > 0.01f) // Small threshold to avoid tiny movements
+        if (movementDirection.magnitude > 0.01f)
         {
             // Determine if moving more horizontally or vertically
             bool movingMoreHorizontally = Mathf.Abs(movementDirection.x) > Mathf.Abs(movementDirection.y);
@@ -142,7 +136,6 @@ public class SimpleGoalNavigationScript : MonoBehaviour
             }
             else
             {
-                // Vertical movement - you might want to adjust this based on your specific isometric setup
                 bool newIsMovingRight = movementDirection.y > 0;
                 if (newIsMovingRight != isMovingRight)
                 {
@@ -153,13 +146,11 @@ public class SimpleGoalNavigationScript : MonoBehaviour
             }
         }
 
-        // Update last position for next frame
         lastPosition = currentPosition;
     }
 
     public void RotateUnit()
     {
-        // Rotate 180 degrees around Y axis
         unit.transform.rotation = Quaternion.Euler(0f, isMovingRight ? 0f : 180f, 0f);
     }
 
@@ -170,7 +161,6 @@ public class SimpleGoalNavigationScript : MonoBehaviour
         targetGO = newTarget;
         Vector3 targetPosition = targetGO.transform.position;
         targetPosition.z = 0;
-       // Debug.Log("Setting target GO to: " + targetPosition);
         agent.SetDestination(targetPosition);
     }
 
@@ -178,19 +168,17 @@ public class SimpleGoalNavigationScript : MonoBehaviour
     {
         animator.SetBool("walking", true);
         newTarget.z = 0;
-        //Debug.Log("Setting target to: " + newTarget);
         targetTransform = newTarget;
         agent.SetDestination(targetTransform);
     }
 
     IEnumerator menuRoam()
     {
-        float minX = 4f, maxX = 30f; // Set your X bounds
-        float minY = 0f, maxY = 12f; // Set your Y bounds
+        float minX = 4f, maxX = 30f;
+        float minY = 0f, maxY = 12f;
 
         while (true)
         {
-            // Generate a random point within the defined rectangle
             float randomX = Random.Range(minX, maxX);
             float randomY = Random.Range(minY, maxY);
             

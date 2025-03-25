@@ -46,20 +46,17 @@ public class CameraNavigation : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
-        // Get input axes for WASD movement
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         // Calculate movement vector based on keyboard input
         Vector3 movement = new Vector3(horizontal, vertical, 0) * panSpeed * Time.unscaledDeltaTime;
         
-        // Apply movement to target position
         targetPosition += movement;
     }
 
     private void HandleMouseInput()
     {
-        // Check for right mouse button
         if (Input.GetMouseButtonDown(2))
         {
             isRightClickHeld = true;
@@ -70,13 +67,11 @@ public class CameraNavigation : MonoBehaviour
             isRightClickHeld = false;
         }
 
-        // Handle right-click drag panning
         if (isRightClickHeld)
         {
             Vector3 currentMousePosition = Input.mousePosition;
             Vector3 mouseDelta = currentMousePosition - lastMousePosition;
             
-            // Convert screen movement to world space movement
             Vector3 movement = new Vector3(-mouseDelta.x, -mouseDelta.y, 0) * rightClickPanSpeed * Time.unscaledDeltaTime;
             targetPosition += movement;
             
@@ -86,22 +81,17 @@ public class CameraNavigation : MonoBehaviour
 
     private void HandleZoom()
     {
-        // Get mouse scroll wheel input
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         
-        // Apply zoom based on scroll input
         targetZoom -= scrollInput * zoomSpeed;
         
-        // Clamp zoom to min and max values
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
     }
 
     private void SmoothCameraMovement()
     {
-        // Smoothly move camera to target position
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.unscaledDeltaTime * smoothing);
         
-        // Smoothly adjust camera zoom
         mainCamera.Lens.OrthographicSize = Mathf.Lerp(mainCamera.Lens.OrthographicSize, targetZoom, Time.unscaledDeltaTime * smoothing);
     }
 }

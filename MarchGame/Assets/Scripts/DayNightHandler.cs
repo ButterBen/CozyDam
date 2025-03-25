@@ -124,13 +124,12 @@ public class DayNightHandler : MonoBehaviour
             {
                 currentTime = 0f;
                 
-                // Check if we're transitioning from night to day
                 if (!isDay)
                 {
                     showNewDay();
                     isNight = false;
                     waterHandler.StopFlood();
-                    isNewDay = true; // Flag that a new day has started
+                    isNewDay = true; 
                     Debug.Log("New day flag set");
                     SwitchBackGroundMusic();
                     nightEvent.Invoke();
@@ -151,7 +150,6 @@ public class DayNightHandler : MonoBehaviour
                 timeStep = 1f / (isDay ? dayDuration : nightDuration);
             }
             
-            // Update time text
             timeText.text = isDay ? "Day" : "Night";
             yield return null;
         }
@@ -176,28 +174,24 @@ public class DayNightHandler : MonoBehaviour
     {
         float halfDuration = isDay ? dayDuration / 2f : nightDuration / 2f;
         float cycleDuration = isDay ? dayDuration : nightDuration;
-        float normalizedTime = currentTime / cycleDuration; // 0 to 1 across entire cycle
+        float normalizedTime = currentTime / cycleDuration; 
 
         if (isDay)
         {
             // Day cycle
             if (currentTime <= halfDuration)
             {
-                // First half of day (morning): Sun filling clockwise from 0.5 to 1
                 sunIcon.fillClockwise = true;
                 sunIcon.fillAmount = Mathf.Lerp(0.5f, 1f, currentTime / halfDuration);
                 
-                // Moon reducing counter-clockwise from 0.5 to 0
                 moonIcon.fillClockwise = false;
                 moonIcon.fillAmount = Mathf.Lerp(0.5f, 0f, currentTime / halfDuration);
             }
             else
             {
-                // Second half of day (afternoon): Sun reducing counter-clockwise from 1 to 0.5
                 sunIcon.fillClockwise = false;
                 sunIcon.fillAmount = Mathf.Lerp(1f, 0.5f, (currentTime - halfDuration) / halfDuration);
                 
-                // Moon stays at 0
                 moonIcon.fillClockwise = true;
                 moonIcon.fillAmount = Mathf.Lerp(0f, 0.5f, (currentTime - halfDuration) / halfDuration);
             }
@@ -207,21 +201,17 @@ public class DayNightHandler : MonoBehaviour
             // Night cycle
             if (currentTime <= halfDuration)
             {
-                // First half of night: Moon filling clockwise from 0.5 to 1
                 moonIcon.fillClockwise = true;
                 moonIcon.fillAmount = Mathf.Lerp(0.5f, 1f, currentTime / halfDuration);
                 
-                // Sun reducing counter-clockwise from 0.5 to 0
                 sunIcon.fillClockwise = false;
                 sunIcon.fillAmount = Mathf.Lerp(0.5f, 0f, currentTime / halfDuration);
             }
             else
             {
-                // Second half of night: Moon reducing counter-clockwise from 1 to 0.5
                 moonIcon.fillClockwise = false;
                 moonIcon.fillAmount = Mathf.Lerp(1f, 0.5f, (currentTime - halfDuration) / halfDuration);
                 
-                // Sun filling clockwise from 0 to 0.5
                 sunIcon.fillClockwise = true;
                 sunIcon.fillAmount = Mathf.Lerp(0f, 0.5f, (currentTime - halfDuration) / halfDuration);
             }
