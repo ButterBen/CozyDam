@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
+  m_Name: DecoBushRuleTile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: a08613e3e9b35424db3e37a235e544fc, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: a08613e3e9b35424db3e37a235e544fc, type: 3}
+    - {fileID: 21300000, guid: 303211942e0bb744e976f352d493d076, type: 3}
+    - {fileID: 21300000, guid: 9a501783f84e8414092c54e214dfa764, type: 3}
+    - {fileID: 21300000, guid: d99da76f56e41e64d8c30f2c47f2e229, type: 3}
+    - {fileID: 21300000, guid: 03e34b456056105488e7e479a0abe892, type: 3}
+    - {fileID: 21300000, guid: 6e078b880e1d96249b3f0993cf009092, type: 3}
+    - {fileID: 21300000, guid: a08613e3e9b35424db3e37a235e544fc, type: 3}
+    - {fileID: 21300000, guid: 9cb27f0b6c87d734ea3205a75705facf, type: 3}
+    - {fileID: 21300000, guid: acde22b5d7a96174ab38fa4c6e9dc1d8, type: 3}
+    - {fileID: 21300000, guid: 29bfecd024a8cb04697f89449dd59b27, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.642
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 2
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0

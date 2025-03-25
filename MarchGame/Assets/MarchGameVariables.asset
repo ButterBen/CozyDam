@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04975dac0cacb55489985d770cd559c4, type: 3}
+  m_Name: MarchGameVariables
+  m_EditorClassIdentifier: 
+  minX: -13
+  maxX: 18
+  minY: -16
+  maxY: 18
+  wood: 542
+  food: 892
+  possibleUnits: 3
+  currentUnits: 1

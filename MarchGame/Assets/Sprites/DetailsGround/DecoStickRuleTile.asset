@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
+  m_Name: DecoStickRuleTile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: a08613e3e9b35424db3e37a235e544fc, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 821138f16a1b7bd4fa7e20d0ec54a00e, type: 3}
+    - {fileID: 21300000, guid: 6900fa47690250346b91997042089888, type: 3}
+    - {fileID: 21300000, guid: 9d2667774caa7064fb4a35586cf660c4, type: 3}
+    - {fileID: 21300000, guid: 80e67b808aa6c1a4f9ccc028899f9138, type: 3}
+    - {fileID: 21300000, guid: bda5d619e3794ba43853d4d5980d27b7, type: 3}
+    - {fileID: 21300000, guid: 5a3b97bb4c99c8c47adb16c2e9ae5ebd, type: 3}
+    - {fileID: 21300000, guid: be58aedae87bbd94abbce32d56edb345, type: 3}
+    - {fileID: 21300000, guid: f705effec0cd01141835411cb96083d3, type: 3}
+    - {fileID: 21300000, guid: 739e2e95949cbd64fa2984b4a1044a31, type: 3}
+    - {fileID: 21300000, guid: 50db490c42383a24cb9a6433ac7146f3, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.642
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 2
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0

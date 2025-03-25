@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
+  m_Name: DecoFlowerTile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: a08613e3e9b35424db3e37a235e544fc, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 26152b930495d964e9f6f2c50f8d46c0, type: 3}
+    - {fileID: 21300000, guid: ffc9f8c243c50454b99e633e8580dc04, type: 3}
+    - {fileID: 21300000, guid: 999b8bf79601d7249b6a15674cce0874, type: 3}
+    - {fileID: 21300000, guid: e51203b1f87761a47810db6c57410244, type: 3}
+    - {fileID: 21300000, guid: 227dcbef75cdfda4aa2d33a55251a311, type: 3}
+    - {fileID: 21300000, guid: aeadc0ab429171a4685f6840ea7051ee, type: 3}
+    - {fileID: 21300000, guid: 20850193222516d4aaff0dc75619ff23, type: 3}
+    - {fileID: 21300000, guid: b4915776091e7f24cb12f1f684c4561c, type: 3}
+    - {fileID: 21300000, guid: 20850193222516d4aaff0dc75619ff23, type: 3}
+    - {fileID: 21300000, guid: b4915776091e7f24cb12f1f684c4561c, type: 3}
+    - {fileID: 21300000, guid: 9ac6fd6a0bede8d418ee834056da962b, type: 3}
+    - {fileID: 21300000, guid: 8a1994be2c1ea8942b2f7f56ddf91eab, type: 3}
+    - {fileID: 21300000, guid: e92e4de5291b11047b98293a616a0215, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.64
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 2
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0
