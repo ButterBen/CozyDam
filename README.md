@@ -5,7 +5,7 @@ Only the SFX and music were AI-generated or sourced from various free sound effe
 All assets and art where created by [Johannes Lott](https://www.johanneslott.com/) also check him out on [Youtube](https://www.youtube.com/@jolottschannel)
 
 A full playthrough can be seen here: [Watch on YouTube](https://www.youtube.com/watch?v=_Z_k4NQLr1Y)  
-The game was too large so the build is only included as a zip in this project file unfortunatly.
+A zip file is contained in this project with a build in it.
 
 ---
 
