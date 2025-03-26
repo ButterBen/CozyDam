@@ -181,9 +181,9 @@ public class WaterHandler : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if(hitCollider.CompareTag("Tree") || hitCollider.CompareTag("FieldFood") || hitCollider.CompareTag("Building"))
+            if(hitCollider.CompareTag("Tree") || hitCollider.CompareTag("FoodResource") || hitCollider.CompareTag("Building"))
             {
-                hitCollider.gameObject.GetComponent<Durability>()?.DestroyResource();
+                hitCollider.gameObject.GetComponentInChildren<Durability>().DestroyResource();
             }
             if(hitCollider.CompareTag("DamBuilding"))
             {

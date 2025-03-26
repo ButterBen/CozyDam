@@ -30,6 +30,10 @@ public class CameraNavigation : MonoBehaviour
     {
         panSpeed = PlayerPrefs.GetFloat("PanSpeed", panSpeed);
     }
+    public void CenterCamera()
+    {
+        targetPosition = new Vector3(6, 6, -10);
+    }
 
     // Update is called once per frame
     void Update()

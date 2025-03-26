@@ -51,9 +51,9 @@ public class UIManager : MonoBehaviour
         waterPercentage = waterPercentage * 100;
 
         // Normalize fill amount (0% = 0, 60% = 1)
-        float fillAmount = Mathf.Clamp01(waterPercentage / 60f);
+        float fillAmount = Mathf.Clamp01(waterPercentage / 100f);
         waterCoveredImage.fillAmount = fillAmount;
-
+        
         // Interpolate color from white to red based on percentage (0% = white, 60% = red)
         waterCoveredImage.color = Color.Lerp(Color.white, Color.red, fillAmount);
         if(waterCoveredImage.fillAmount >= .99f)
@@ -66,13 +66,20 @@ public class UIManager : MonoBehaviour
         }
         if(Keyboard.current.escapeKey.wasPressedThisFrame && !menuScene)
         {
-            if(settingsOpen)
+            if(buildOptions.activeSelf)
             {
-                CloseSettingsMenu();
+                CloseBuildMenu();
             }
             else
             {
-                OpenSettingsMenu();
+                if(settingsOpen)
+                {
+                    CloseSettingsMenu();
+                }
+                else
+                {
+                    OpenSettingsMenu();
+                }
             }
         }
         if(menuScene)
@@ -120,6 +127,7 @@ public class UIManager : MonoBehaviour
         damPreviewObject.SetActive(false);
         buildOptions.SetActive(false);
         navMeshSurface.BuildNavMeshAsync();
+        farmPreviewObject.SetActive(false);
         audioSource.PlayOneShot(buildButtonSound);
         Time.timeScale = 1;
     }
@@ -247,6 +255,7 @@ public class UIManager : MonoBehaviour
         settingsMenu.SetActive(false);
         settingsOpen = true;
         Time.timeScale = 0;
+        CameraNavigation.CenterCamera();
     }
     public void CloseSettingsMenu()
     {
