@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using NavMeshPlus.Components;
+using Unity.VisualScripting;
 public class WaterHandler : MonoBehaviour
 {
     public MarchGameVariables marchGameVariables;
@@ -188,6 +189,10 @@ public class WaterHandler : MonoBehaviour
             if(hitCollider.CompareTag("DamBuilding"))
             {
                 hitCollider.gameObject.GetComponentInChildren<Durability>().DestroyResource();
+            }
+            if(hitCollider.CompareTag("FinishedBuilding"))
+            {
+                Destroy(hitCollider.gameObject);
             }
         }
     }

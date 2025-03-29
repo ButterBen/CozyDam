@@ -123,7 +123,7 @@ public class Durability : MonoBehaviour
                 buildingStage2.SetActive(true);
                 Destroy(buildingStage1);
                 destroyed = true;
-                workAssignScript.DestroyScript();
+                workAssignScript.DestroyBuilding();
                 workAssignScript.UnAssignWork();
                 Destroy(this);
                 workAssignScript.activeWalkToPoints.Remove(gameObject);

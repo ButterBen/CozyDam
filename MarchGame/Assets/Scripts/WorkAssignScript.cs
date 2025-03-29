@@ -45,6 +45,11 @@ public class WorkAssignScript : MonoBehaviour
         boxCollider2D.enabled = false;
         Destroy(this);
     }
+    public void DestroyBuilding()
+    {
+        this.gameObject.tag = "FinishedBuilding";
+        Destroy(this);
+    }
 
     public WorkType GetWorkType()
     {
